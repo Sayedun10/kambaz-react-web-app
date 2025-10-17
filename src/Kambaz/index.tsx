@@ -12,7 +12,7 @@ export default function Kambaz() {
         <div>
           <KambazNavigation />
         </div>
-        <div className="flex-fill">
+        <div className="wd-main-content-offset p-3 flex-fill">
           <Routes>
             <Route path="/" element={<Navigate to="Account" />} />
             <Route path="/Account/*" element={<Account />} />
