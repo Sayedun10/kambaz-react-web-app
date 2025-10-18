@@ -1,5 +1,3 @@
-import { useLocation } from "react-router-dom";
-
 export default function TOC() {
   return (
     <ul>
@@ -19,7 +17,9 @@ export default function TOC() {
         <a href="#/">Kambaz</a>
       </li>
       <li>
-        <a href="https://github.com/Sayedun10" id="wd-github">My GitHub</a>
+        <a href="https://github.com/Sayedun10" id="wd-github">
+          My GitHub
+        </a>
       </li>
     </ul>
   );
