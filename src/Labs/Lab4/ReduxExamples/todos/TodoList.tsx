@@ -1,7 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "../store";
-import { addTodo, deleteTodo, updateTodo, setTodo } from "./todosReducer";
-
+import { addTodo, deleteTodo, setTodo } from "./todosReducer";
 export default function TodoList() {
   const { todos, todo } = useSelector((state: RootState) => state.todosReducer);
   const dispatch = useDispatch();
