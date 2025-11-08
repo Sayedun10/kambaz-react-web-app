@@ -21,6 +21,9 @@ export default function TOC() {
           My GitHub
         </a>
       </li>
+      <li>
+        <a href="#/Labs/Lab4">Lab 4</a>
+      </li>
     </ul>
   );
 }
