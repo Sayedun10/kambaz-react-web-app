@@ -27,6 +27,24 @@ export default function TOC() {
       <li>
         <a href="#/Labs/Lab5">Lab 5</a>
       </li>
+      <li>
+        <a
+          href="https://github.com/Sayedun10/kambaz-react-web-app"
+          id="wd-github"
+        >
+          React GitHub Repo
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/Sayedun10/kambaz-node-server-app">
+          Node GitHub Repo
+        </a>
+      </li>
+      <li>
+        <a href="https://kambaz-node-server-app-f9nu.onrender.com">
+          Node Server on Render
+        </a>
+      </li>
     </ul>
   );
 }
