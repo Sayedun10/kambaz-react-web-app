@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const HTTP_SERVER = import.meta.env.VITE_HTTP_SERVER;
 
