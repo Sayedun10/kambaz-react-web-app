@@ -45,6 +45,9 @@ export default function TOC() {
           Node Server on Render
         </a>
       </li>
+      <li>
+        <a href="#/Labs/Lab6">Lab 6</a>
+      </li>
     </ul>
   );
 }
