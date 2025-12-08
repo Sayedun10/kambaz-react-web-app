@@ -1,13 +1,32 @@
 import { BsGripVertical } from "react-icons/bs";
 import { FaPlus } from "react-icons/fa6";
 import { IoEllipsisVertical } from "react-icons/io5";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import * as client from "../../Assignments/client";
 import GreenCheckmark from "../Modules/GreenCheckmark";
 
 export default function Assignments() {
+  const { cid } = useParams();
+  const [assignments, setAssignments] = useState<any[]>([]);
+
+  const fetchAssignments = async () => {
+    const assignments = await client.findAssignmentsForCourse(cid as string);
+    setAssignments(assignments);
+  };
+
+  useEffect(() => {
+    fetchAssignments();
+  }, [cid]);
+
   return (
     <div id="wd-assignments">
       <div className="d-flex mb-3">
-        <input placeholder="Search for Assignments" id="wd-search-assignment" className="form-control me-2" />
+        <input
+          placeholder="Search for Assignments"
+          id="wd-search-assignment"
+          className="form-control me-2"
+        />
         <button id="wd-add-assignment-group" className="btn btn-secondary me-2">
           <FaPlus className="me-1" /> Group
         </button>
@@ -24,48 +43,30 @@ export default function Assignments() {
             <IoEllipsisVertical className="float-end fs-4" />
           </div>
           <ul className="wd-lessons list-group rounded-0">
-            <li className="wd-assignment-list-item list-group-item p-3 ps-1">
-              <BsGripVertical className="me-2 fs-3" />
-              <a href="#/Kambaz/Courses/1234/Assignments/123" className="wd-assignment-link text-dark text-decoration-none">
-                A1 - ENV + HTML
-              </a>
-              <div className="float-end">
-                <GreenCheckmark />
-                <IoEllipsisVertical className="fs-4" />
-              </div>
-              <br />
-              <small className="text-muted">
-                Multiple Modules | Not available until May 6 at 12:00am | Due May 13 at 11:59pm | 100 pts
-              </small>
-            </li>
-            <li className="wd-assignment-list-item list-group-item p-3 ps-1">
-              <BsGripVertical className="me-2 fs-3" />
-              <a href="#/Kambaz/Courses/1234/Assignments/124" className="wd-assignment-link text-dark text-decoration-none">
-                A2 - CSS + BOOTSTRAP
-              </a>
-              <div className="float-end">
-                <GreenCheckmark />
-                <IoEllipsisVertical className="fs-4" />
-              </div>
-              <br />
-              <small className="text-muted">
-                Multiple Modules | Not available until May 13 at 12:00am | Due May 20 at 11:59pm | 100 pts
-              </small>
-            </li>
-            <li className="wd-assignment-list-item list-group-item p-3 ps-1">
-              <BsGripVertical className="me-2 fs-3" />
-              <a href="#/Kambaz/Courses/1234/Assignments/125" className="wd-assignment-link text-dark text-decoration-none">
-                A3 - JAVASCRIPT + REACT
-              </a>
-              <div className="float-end">
-                <GreenCheckmark />
-                <IoEllipsisVertical className="fs-4" />
-              </div>
-              <br />
-              <small className="text-muted">
-                Multiple Modules | Not available until May 20 at 12:00am | Due May 27 at 11:59pm | 100 pts
-              </small>
-            </li>
+            {assignments.map((assignment: any) => (
+              <li
+                key={assignment._id}
+                className="wd-assignment-list-item list-group-item p-3 ps-1"
+              >
+                <BsGripVertical className="me-2 fs-3" />
+                <a
+                  href={`#/Kambaz/Courses/${cid}/Assignments/${assignment._id}`}
+                  className="wd-assignment-link text-dark text-decoration-none"
+                >
+                  {assignment.title}
+                </a>
+                <div className="float-end">
+                  <GreenCheckmark />
+                  <IoEllipsisVertical className="fs-4" />
+                </div>
+                <br />
+                <small className="text-muted">
+                  Multiple Modules | Not available until{" "}
+                  {assignment.availableDate} | Due {assignment.dueDate} |{" "}
+                  {assignment.points} pts
+                </small>
+              </li>
+            ))}
           </ul>
         </li>
       </ul>

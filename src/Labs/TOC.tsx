@@ -24,6 +24,9 @@ export default function TOC() {
       <li>
         <a href="#/Labs/Lab4">Lab 4</a>
       </li>
+      <li>
+        <a href="#/Labs/Lab5">Lab 5</a>
+      </li>
     </ul>
   );
 }
