@@ -15,6 +15,11 @@ export default function Assignments() {
     setAssignments(assignments);
   };
 
+  const deleteAssignment = async (assignmentId: string) => {
+    await client.deleteAssignment(assignmentId);
+    setAssignments(assignments.filter((a) => a._id !== assignmentId));
+  };
+
   useEffect(() => {
     fetchAssignments();
   }, [cid]);
@@ -43,27 +48,30 @@ export default function Assignments() {
             <IoEllipsisVertical className="float-end fs-4" />
           </div>
           <ul className="wd-lessons list-group rounded-0">
-            {assignments.map((assignment: any) => (
+            {assignments.map((a: any) => (
               <li
-                key={assignment._id}
+                key={a._id}
                 className="wd-assignment-list-item list-group-item p-3 ps-1"
               >
                 <BsGripVertical className="me-2 fs-3" />
                 <a
-                  href={`#/Kambaz/Courses/${cid}/Assignments/${assignment._id}`}
+                  href={`#/Kambaz/Courses/${cid}/Assignments/${a._id}`}
                   className="wd-assignment-link text-dark text-decoration-none"
                 >
-                  {assignment.title}
+                  {a.title}
                 </a>
-                <div className="float-end">
-                  <GreenCheckmark />
-                  <IoEllipsisVertical className="fs-4" />
-                </div>
+                <button
+                  className="btn btn-danger btn-sm float-end"
+                  onClick={() => deleteAssignment(a._id)}
+                >
+                  Delete
+                </button>
+                <GreenCheckmark />
+                <IoEllipsisVertical className="fs-4" />
                 <br />
                 <small className="text-muted">
-                  Multiple Modules | Not available until{" "}
-                  {assignment.availableDate} | Due {assignment.dueDate} |{" "}
-                  {assignment.points} pts
+                  Multiple Modules | Not available until {a.availableDate} | Due{" "}
+                  {a.dueDate} | {a.points} pts
                 </small>
               </li>
             ))}
