@@ -37,7 +37,9 @@ export default function Modules() {
 
   const updateModule = async () => {
     await client.updateModule(module);
-    setModules(modules.map((m) => (m._id === module._id ? module : m)));
+    setModules(
+      modules.map((m) => (m._id === (module as any)._id ? module : m))
+    );
     setModule({
       name: "New Module",
       description: "New Description",
